@@ -3,13 +3,21 @@ import { InMemoryAnswersRepository } from "test/repositories/in-memory-answers-r
 import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 import { makeAnswer } from "test/factories/make-answer";
 import { NotAllowedError } from "@/domain/forum/application/use-cases/errors/not-allowed-error";
+import { InMemoryAnswerAttachmentsRepository } from "test/repositories/in-memory-answer-attachment-repository";
+
+let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentsRepository;
 
 let inMemoryAnswersRepository: InMemoryAnswersRepository;
 let sut: DeleteAnswerUseCase;
 
 describe("Delete Answer", () => {
   beforeEach(() => {
-    inMemoryAnswersRepository = new InMemoryAnswersRepository();
+    inMemoryAnswerAttachmentsRepository =
+      new InMemoryAnswerAttachmentsRepository();
+    inMemoryAnswersRepository = new InMemoryAnswersRepository(
+      inMemoryAnswerAttachmentsRepository
+    );
+
     sut = new DeleteAnswerUseCase(inMemoryAnswersRepository);
   });
 

@@ -82,6 +82,7 @@ describe("Edit Answer", () => {
       answerId: newAnswer.id.toValue(),
       authorId: "author-2",
       content: "Conteúdo teste",
+      attachmentsIds: [],
     });
 
     expect(result.isLeft()).toBe(true);

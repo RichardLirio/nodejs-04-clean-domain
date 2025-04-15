@@ -187,7 +187,7 @@ Abaixo estão exemplos reais do repositório, destacando a aplicação de DDD, A
 
 No arquivo `src/domain/forum/enterprise/entities/question.ts`, a entidade `Question` encapsula as regras de negócio de uma pergunta.
 
-<xaiArtifactCodeBlock language="typescript">
+```typescript
 import { Entity } from '@/core/entities/entity'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { Slug } from './value-objects/slug'
@@ -277,7 +277,7 @@ export class Question extends Entity<QuestionProps> {
     return question
   }
 }
-</xaiArtifactCodeBlock>
+```
 
 **Explicação**: A entidade `Question` usa objetos de valor (`Slug`) e identificadores únicos (`UniqueEntityID`). Métodos como `set title` atualizam o slug automaticamente e registram a data de modificação (`touch`), refletindo o comportamento do domínio.
 
@@ -285,7 +285,7 @@ export class Question extends Entity<QuestionProps> {
 
 No arquivo `src/domain/notification/application/use-cases/send-notification.ts`, o caso de uso `SendNotificationUseCase` orquestra o envio de uma notificação.
 
-<xaiArtifactCodeBlock language="typescript">
+```typescript
 import { Either, right } from '@/core/either'
 import { Notification } from '../../enterprise/entities/notification'
 import { NotificationsRepository } from '../repositories/notifications-repository'
@@ -326,7 +326,7 @@ export class SendNotificationUseCase {
     })
   }
 }
-</xaiArtifactCodeBlock>
+```
 
 **Explicação**: Este caso de uso cria uma entidade `Notification` e a persiste via uma interface de repositório, mantendo a lógica de negócio desacoplada. Ele reflete a separação de responsabilidades da Arquitetura Limpa.
 
@@ -334,7 +334,7 @@ export class SendNotificationUseCase {
 
 No arquivo `src/domain/forum/enterprise/entities/question-attachment-list.ts`, a classe `QuestionAttachmentList` utiliza a estrutura `WatchedList` para gerenciar anexos e disparar notificações.
 
-<xaiArtifactCodeBlock language="typescript">
+```typescript
 import { WatchedList } from '@/core/entities/watched-list'
 import { QuestionAttachment } from './question-attachment'
 
@@ -343,7 +343,7 @@ export class QuestionAttachmentList extends WatchedList<QuestionAttachment> {
     return a.attachmentId.equals(b.attachmentId)
   }
 }
-</xaiArtifactCodeBlock>
+```
 
 **Explicação**: A `WatchedList` rastreia mudanças em listas (adições, remoções ou atualizações), permitindo notificações automáticas. Por exemplo, ao adicionar um anexo a uma pergunta, a lista registra o evento, que pode ser usado para disparar notificações (ex.: informar o autor da pergunta).
 
@@ -351,7 +351,7 @@ export class QuestionAttachmentList extends WatchedList<QuestionAttachment> {
 
 No arquivo `src/domain/notification/application/use-cases/send-notification.spec.ts`, um teste unitário com **Vitest** valida o caso de uso de envio de notificações.
 
-<xaiArtifactCodeBlock language="typescript">
+```typescript
 import { expect, it, describe, beforeEach } from 'vitest'
 import { SendNotificationUseCase } from './send-notification'
 import { InMemoryNotificationsRepository } from 'test/repositories/in-memory-notifications-repository'
@@ -383,7 +383,7 @@ describe('Send Notification', () => {
     })
   })
 })
-</xaiArtifactCodeBlock>
+```
 
 **Explicação**: O teste valida a criação de uma notificação, usando um repositório em memória para isolar dependências. Ele verifica se a notificação é salva corretamente, garantindo que o caso de uso funcione como esperado.
 

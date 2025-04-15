@@ -17,7 +17,7 @@ O foco está nos níveis mais baixos da Arquitetura Limpa (domínio e aplicaçã
 
 - **Node.js** com **TypeScript**
 - **Vitest** para testes unitários
-- **PNPM** como gerenciador de pacotes
+- **NPM** como gerenciador de pacotes
 
 ## 📚 Estrutura do Projeto
 
@@ -408,13 +408,13 @@ Os testes unitários, implementados com **Vitest**, cobrem entidades, objetos de
 Para executar os testes:
 
 ```bash
-pnpm test
+npm test
 ```
 
 Para cobertura:
 
 ```bash
-pnpm test:coverage
+npm test:coverage
 ```
 
 ## 📬 Sistema de Notificações
@@ -456,7 +456,7 @@ await notificationsRepository.create(notification);
 ### Pré-requisitos
 
 - Node.js (v18 ou superior)
-- PNPM
+- NPM
 
 ### Passos
 
@@ -470,13 +470,13 @@ await notificationsRepository.create(notification);
 2. **Instale as dependências**:
 
    ```bash
-   pnpm install
+   npm install
    ```
 
 3. **Execute os testes**:
 
    ```bash
-   pnpm test
+   npm test
    ```
 
 ## 🌟 Benefícios do DDD e Arquitetura Limpa

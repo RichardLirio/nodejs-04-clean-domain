@@ -476,7 +476,7 @@ await notificationsRepository.create(notification);
 3. **Execute os testes**:
 
    ```bash
-   npm test
+   npm run test
    ```
 
 ## 🌟 Benefícios do DDD e Arquitetura Limpa
